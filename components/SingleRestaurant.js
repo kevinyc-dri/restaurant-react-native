@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, Card } from 'react-native-elements'
-import { View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 
 function SingleRestaurant({ eachRestaurant }) {
   return (
-    <View key={eachRestaurant.id}>
+    <TouchableOpacity onPress={() => 'ResDetails'}>
       <Card>
         <Card.Title>{eachRestaurant.name}</Card.Title>
         <Card.Divider />
@@ -13,12 +13,9 @@ function SingleRestaurant({ eachRestaurant }) {
         }}
         >
           <Text style={styles.containerText}>{eachRestaurant.address}</Text>
-          <Button
-            buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-            title='VIEW NOW' />
         </Card.Image>
       </Card>
-    </View>
+    </TouchableOpacity>
   )
 }
 

@@ -1,56 +1,29 @@
-import { StatusBar } from 'expo-status-bar'
-import React, { useState, useEffect } from 'react'
-import {
-  TextInput,
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  Image,
-  View,
-  Button,
-  ScrollView
-} from 'react-native'
-import SingleRestaurant from './components/SingleRestaurant'
-import { Card, Text } from 'react-native-elements'
+import React from 'react'
+import { ImageBackground } from 'react-native'
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+const Stack = createStackNavigator()
+
+import HomeScreen from './screens/HomeScreen'
+import ResDetailScreen from './screens/ResDetailScreen'
 
 
 export default function App() {
-  // console.log('this is the platform', Platform.OS == 'ios' ? true : false)
-  const [restaurants, setRestaurants] = useState(null)
-
-  useEffect(function () {
-    fetch('https://bocacode-intranet-api.web.app/restaurants')
-      .then(response => response.json())
-      .then(data => setRestaurants(data))
-      .catch(err => console.log(err))
-  }, [])
-
-  console.log(restaurants)
-
   return (
-    <SafeAreaView style={styles.container}>
-      <Text h2>Boca Code Restaurants</Text>
-      <ScrollView>
-        {restaurants
-          && restaurants.map(eachRestaurant => {
-            return (
-              <SingleRestaurant key={eachRestaurant.id} eachRestaurant={eachRestaurant} />
-            )
-          })}
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <ImageBackground
+      source={require('./assets/background.png')}
+      style={{ display: 'flex', height: '100%' }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen name='ResDetails' component={ResDetailScreen} />
+        </Stack.Navigator>
+        {/* <HomeScreen /> */}
+      </NavigationContainer>
+    </ImageBackground>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'orchid',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  containerImg: {
-    width: 200,
-    height: 300,
-  }
-});
+
