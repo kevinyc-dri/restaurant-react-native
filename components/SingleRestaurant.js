@@ -4,26 +4,25 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native'
 
 function SingleRestaurant({ eachRestaurant }) {
   return (
-    <TouchableOpacity onPress={() => 'ResDetails'}>
+    <View containerStyle={{ maxWidth: 300 }}>
       <Card>
         <Card.Title>{eachRestaurant.name}</Card.Title>
         <Card.Divider />
-        <Card.Image source={{
-          uri: eachRestaurant.photoUrl,
-        }}
-        >
-          <Text style={styles.containerText}>{eachRestaurant.address}</Text>
-        </Card.Image>
+        <Card.Image
+          source={{
+            uri: eachRestaurant.photoUrl,
+          }}
+        ></Card.Image>
+          <Text style={styles.containerHeading}>{eachRestaurant.address}</Text>
       </Card>
-    </TouchableOpacity>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   containerHeading: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: '800',
+    fontSize: 18,
+    marginTop: 10,
     textAlign: 'center'
   }
 })

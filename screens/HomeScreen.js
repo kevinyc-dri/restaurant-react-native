@@ -1,8 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native'
 import React, { useState, useEffect } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { SafeAreaView, ScrollView, StyleSheet, ActivityIndicator } from 'react-native'
-import { Button, Text } from 'react-native-elements'
+import { Text } from 'react-native-elements'
 import SingleRestaurant from '../components/SingleRestaurant'
 
 function HomeScreen({ navigation }) {
@@ -25,7 +24,7 @@ function HomeScreen({ navigation }) {
         ) : (
           restaurants.map(eachRestaurant => {
             return (
-              <TouchableOpacity
+              <TouchableOpacity key={eachRestaurant.id}
                 onPress={() => navigation.navigate('ResDetails', { restaurant: eachRestaurant })}
               >
                 <SingleRestaurant key={eachRestaurant.id} eachRestaurant={eachRestaurant} />
